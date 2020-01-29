@@ -1,7 +1,12 @@
 # Find Company by MAC Address
 
 This command line utility finds the company name associated with a MAC address and writes it to the console output.
-You will need your https://macaddress.io api key to run
+
+*Important*: You will need an API key obtained from https://macaddress.io to run
+
+## Simply run the utility - Run from an existing [Dockerhub image](https://hub.docker.com/repository/docker/kamal2311/macaddressio)
+
+`docker run -eMACADDRESSIO_API_KEY=<your api key> kamal2311/macaddressio:v2 44:38:39:ff:ef:57`
 
 ## Get module
 `go get github.com/kamal2311/macaddressio`
@@ -21,11 +26,6 @@ Sample output
 
 ## Test
 `go test github.com/kamal2311/macaddressio`
-
-## Run from an existing Dockerhub image
-https://hub.docker.com/repository/docker/kamal2311/macaddressio
-
-`docker run -eMACADDRESSIO_API_KEY=<your api key> kamal2311/macaddressio:v2 44:38:39:ff:ef:57`
 
 ## Build your own docker image
 

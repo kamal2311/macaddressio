@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -32,16 +33,15 @@ func main() {
 
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
-	name := extractCompanyName(body)
+	name, err := extractCompanyName(body)
 	fmt.Println(name)
 }
 
-func extractCompanyName(body []byte) (companyName string) {
+func extractCompanyName(body []byte) (companyName string, err error) {
 	var macResponse map[string]interface{}
-	err := json.Unmarshal([]byte(body), &macResponse)
+	err = json.Unmarshal([]byte(body), &macResponse)
 	if err != nil {
-		fmt.Println("API response could not be parsed")
-		return ""
+		return "", errors.New("API response could not be parsed")
 	}
-	return macResponse["vendorDetails"].(map[string]interface{})["companyName"].(string)
+	return macResponse["vendorDetails"].(map[string]interface{})["companyName"].(string), nil
 }

@@ -17,18 +17,41 @@ e.g.
 
 Sample output
 
-```Cumulus Networks, Inc```
+`Cumulus Networks, Inc`
 
 ## Test
 `go test github.com/kamal2311/macaddressio`
 
-## Build a docker image
+## Run from an existing Dockerhub image
+https://hub.docker.com/repository/docker/kamal2311/macaddressio
+
+`docker run -eMACADDRESSIO_API_KEY=<your api key> kamal2311/macaddressio:v2 44:38:39:ff:ef:57`
+
+## Build your own docker image
 
 `docker build -t <your_tag_name>:<version> .`
 
 ## Run the docker image
 
 `docker run -eMACADDRESSIO_API_KEY=<your api key> <your_tag_name>:<version> <MAC_ADDRESS_TO_SEARCH>`
+
+## For smaller size docker image 800MB reduced to 8MB!
+
+Build the application locally with the following command. This will compile the go application with statically linked libraries.
+
+`CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo github.com/kamal2311/macaddressio .`
+
+Then build the docker image using the file Dockerfile.scratch
+
+`docker build -t <your_tag_name>:<version> -f Dockerfile.scratch .`
+
+Run the image as before
+
+`docker run -eMACADDRESSIO_API_KEY=<your api key> <your_tag_name>:<version> <MAC_ADDRESS_TO_SEARCH>`
+
+
+
+
 
 
 

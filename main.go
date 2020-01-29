@@ -7,13 +7,14 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"regexp"
 )
 
 func main() {
 
 	APIKEY := os.Getenv("MACADDRESSIO_API_KEY")
 	if APIKEY == "" {
-		println("APIKEY is missing - report an issue")
+		fmt.Println("APIKEY is missing - Please set MACADDRESSIO_API_KEY environment variable.")
 		os.Exit(1)
 	}
 
@@ -22,6 +23,10 @@ func main() {
 		os.Exit(1)
 	}
 	MACADDRESS := os.Args[1]
+	if !isValidMACAddress(MACADDRESS) {
+		fmt.Println("MAC address provided was invalid. A sample valid MAC address looks like 44:38:39:ff:ef:57")
+		os.Exit(1)
+	}
 
 	URL := fmt.Sprintf("https://api.macaddress.io/v1?apiKey=%s&output=json&search=%s", APIKEY, MACADDRESS)
 
@@ -44,4 +49,9 @@ func extractCompanyName(body []byte) (companyName string, err error) {
 		return "", errors.New("API response could not be parsed")
 	}
 	return macResponse["vendorDetails"].(map[string]interface{})["companyName"].(string), nil
+}
+
+func isValidMACAddress(mac string) bool {
+	validMAC := regexp.MustCompile(`^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$`)
+	return validMAC.Match([]byte(mac))
 }

@@ -28,3 +28,28 @@ func TestExtractCompanyNameFromMalformedJSON(t *testing.T) {
 		t.Errorf("Expected empty result but got %s", got)
 	}
 }
+
+
+func TestValidMACAddress(t *testing.T){
+	goodMACAddress := "44:38:39:ff:ef:57"
+	wanted := true
+
+	got := isValidMACAddress(goodMACAddress)
+
+	if got != wanted {
+		t.Errorf("Wanted %v, but got %v", wanted, got)
+	}	
+
+}
+
+func TestInvalidMACAddress(t *testing.T){
+	badMACAddress := "xa:38:39:ff:ef:57"
+	wanted := false
+
+	got := isValidMACAddress(badMACAddress)
+
+	if got != wanted {
+		t.Errorf("Wanted %v, but got %v", wanted, got)
+	}	
+
+}

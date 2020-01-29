@@ -21,3 +21,14 @@ Sample output
 
 ## Test
 `go test github.com/kamal2311/macaddressio`
+
+## Build a docker image
+
+`docker build -t <your_tag_name>:<version> .`
+
+## Run the docker image
+
+`docker run -eMACADDRESSIO_API_KEY=<your api key> <your_tag_name>:<version> <MAC_ADDRESS_TO_SEARCH>`
+
+
+

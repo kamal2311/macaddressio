@@ -6,7 +6,7 @@ This command line utility finds the company name associated with a MAC address a
 
 ## Simply run the utility - Run from an existing [Dockerhub image](https://hub.docker.com/repository/docker/kamal2311/macaddressio)
 
-`docker run -eMACADDRESSIO_API_KEY=<your api key> kamal2311/macaddressio:v2 44:38:39:ff:ef:57`
+`docker run -eMACADDRESSIO_API_KEY=<your api key> kamal2311/macaddressio:v3 44:38:39:ff:ef:57`
 
 ## Get module
 `go get github.com/kamal2311/macaddressio`

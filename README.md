@@ -35,19 +35,6 @@ Sample output
 
 `docker run -eMACADDRESSIO_API_KEY=<your api key> <your_tag_name>:<version> <MAC_ADDRESS_TO_SEARCH>`
 
-## For smaller size docker image 800MB reduced to 8MB!
-
-Build the application locally with the following command. This will compile the go application with statically linked libraries.
-
-`CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo github.com/kamal2311/macaddressio .`
-
-Then build the docker image using the file Dockerfile.optimized
-
-`docker build -t <your_tag_name>:<version> -f Dockerfile.optimized .`
-
-Run the image as before
-
-`docker run -eMACADDRESSIO_API_KEY=<your api key> <your_tag_name>:<version> <MAC_ADDRESS_TO_SEARCH>`
 
 
 

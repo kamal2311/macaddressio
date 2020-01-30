@@ -16,8 +16,8 @@ func TestExtractCompanyNameFromGoodJSON(t *testing.T) {
 	}
 }
 
-func TestExtractCompanyNameFromMalformedJSON(t *testing.T) {
-	malformedJSON := []byte(`{"vendorDetails":{}`)
+func TestExtractCompanyNameFromErrorJSON(t *testing.T) {
+	malformedJSON := []byte(`{"error":{"data":"Access denied"}}`)
 	wanted := ""
 	got, err := extractCompanyName(malformedJSON)
 
@@ -29,8 +29,7 @@ func TestExtractCompanyNameFromMalformedJSON(t *testing.T) {
 	}
 }
 
-
-func TestValidMACAddress(t *testing.T){
+func TestValidMACAddress(t *testing.T) {
 	goodMACAddress := "44:38:39:ff:ef:57"
 	wanted := true
 
@@ -38,11 +37,11 @@ func TestValidMACAddress(t *testing.T){
 
 	if got != wanted {
 		t.Errorf("Wanted %v, but got %v", wanted, got)
-	}	
+	}
 
 }
 
-func TestInvalidMACAddress(t *testing.T){
+func TestInvalidMACAddress(t *testing.T) {
 	badMACAddress := "xa:38:39:ff:ef:57"
 	wanted := false
 
@@ -50,6 +49,6 @@ func TestInvalidMACAddress(t *testing.T){
 
 	if got != wanted {
 		t.Errorf("Wanted %v, but got %v", wanted, got)
-	}	
+	}
 
 }

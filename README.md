@@ -41,9 +41,9 @@ Build the application locally with the following command. This will compile the 
 
 `CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo github.com/kamal2311/macaddressio .`
 
-Then build the docker image using the file Dockerfile.scratch
+Then build the docker image using the file Dockerfile.optimized
 
-`docker build -t <your_tag_name>:<version> -f Dockerfile.scratch .`
+`docker build -t <your_tag_name>:<version> -f Dockerfile.optimized .`
 
 Run the image as before
 

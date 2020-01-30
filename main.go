@@ -39,15 +39,21 @@ func main() {
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	name, err := extractCompanyName(body)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
 	fmt.Println(name)
 }
 
 func extractCompanyName(body []byte) (companyName string, err error) {
 	var macResponse map[string]interface{}
 	err = json.Unmarshal([]byte(body), &macResponse)
-	if err != nil {
-		return "", errors.New("API response could not be parsed")
+	if err != nil || macResponse["error"] != nil {
+		return "", errors.New("API response was not correct. Please check APIKey or MACaddress")
 	}
+
 	return macResponse["vendorDetails"].(map[string]interface{})["companyName"].(string), nil
 }
 

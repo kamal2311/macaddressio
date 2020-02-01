@@ -13,19 +13,19 @@ import (
 
 func main() {
 
-	APIKEY := os.Getenv("MACADDRESSIO_API_KEY")
-	if APIKEY == "" {
+	APIKey := os.Getenv("MACADDRESSIO_API_KEY")
+	if APIKey == "" {
 		log.Fatal("APIKEY is missing - Please set MACADDRESSIO_API_KEY environment variable.")
 	}
 	if len(os.Args) != 2 {
 		log.Fatal("Must provide exactly one argument - the MAC address")
 	}
-	MACADDRESS := os.Args[1]
-	if !isValidMACAddress(MACADDRESS) {
+	MACAddress := os.Args[1]
+	if !isValidMACAddress(MACAddress) {
 		log.Fatal("MAC address provided was invalid. A sample valid MAC address looks like 44:38:39:ff:ef:57")
 	}
 
-	URL := fmt.Sprintf("https://api.macaddress.io/v1?apiKey=%s&output=json&search=%s", APIKEY, MACADDRESS)
+	URL := fmt.Sprintf("https://api.macaddress.io/v1?apiKey=%s&output=json&search=%s", APIKey, MACAddress)
 
 	resp, err := http.Get(URL)
 	if err != nil {

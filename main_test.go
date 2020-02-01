@@ -17,7 +17,7 @@ func TestExtractCompanyNameFromGoodJSON(t *testing.T) {
 }
 
 func TestExtractCompanyNameFromErrorJSON(t *testing.T) {
-	malformedJSON := []byte(`{"error":{"data":"Access denied"}}`)
+	malformedJSON := []byte(`{"error":"Access denied"}`)
 	wanted := ""
 	got, err := extractCompanyName(malformedJSON)
 
